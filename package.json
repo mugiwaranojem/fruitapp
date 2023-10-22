@@ -1,0 +1,27 @@
+{
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress",
+    "postinstall": "encore production --progress"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.23.2",
+    "axios": "^1.5.1",
+    "bootstrap": "^5.3.2",
+    "bootstrap-vue": "^2.23.1",
+    "vue": "^2.5.2",
+    "vue-loader": "^15.11.1",
+    "vue-template-compiler": "^2.7.14",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@symfony/webpack-encore": "^4.4.0",
+    "eslint": "^8.52.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "webpack-notifier": "^1.15.0"
+  }
+}
