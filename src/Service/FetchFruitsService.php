@@ -70,7 +70,7 @@ EMAILBODY;
         $mailParams = [
             'from' => new Address('mugiwaradev1109@gmail.com', 'Dev Mugiwara'),
             'to' => 'jemmydpuerto@gmail.com',
-            'subject' => 'Subject Test',
+            'subject' => 'Fruits Project',
             'body' => $body,
         ];
 

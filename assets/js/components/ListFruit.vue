@@ -123,6 +123,7 @@
             </span>
             <button
               v-else
+              :disabled="favoritesCount === 10"
               type="button"
               class="btn btn-sm btn-outline-primary"
               @click="addToFavorite(fruit.id)"
