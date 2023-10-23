@@ -70,6 +70,29 @@
           </td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">
+            <div class="mb-3 fw-bold">
+              Total Nutritions:
+            </div>
+            <ol class="list-group list-group-numbered">
+              <li
+                v-for="nutrition in Object.keys(totalNutritions)"
+                :key="`nutrition-${nutrition}`"
+                class="list-group-item d-flex justify-content-between align-items-start"
+              >
+                <div class="ms-2 me-auto">
+                  <div>
+                    Total <span class="text-capitalize">{{ nutrition }}</span>
+                  </div>
+                </div>
+                <span class="badge bg-primary rounded-pill">{{ totalNutritions[nutrition].toFixed(2) }}</span>
+              </li>
+            </ol>
+          </td>
+        </tr>
+      </tfoot>
     </table>
     <a href="/"><span aria-hidden="true">&laquo;&laquo;</span>&nbsp;Back</a>
   </div>
@@ -85,6 +108,29 @@ export default {
       fruits: [],
     }
   },
+  computed: {
+    totalNutritions() {
+      const nutritions = {
+        fat: 0,
+        sugar: 0,
+        protein: 0,
+        calories: 0,
+        carbohydrates: 0
+      };
+
+      if (this.fruits.length) {
+        this.fruits.forEach(fruit => {
+          Object.keys(fruit.nutritions).forEach(nutritionKey => {
+            if (typeof nutritions[nutritionKey] === 'number' && typeof fruit.nutritions[nutritionKey] === 'number') {
+              nutritions[nutritionKey] = nutritions[nutritionKey] + fruit.nutritions[nutritionKey];
+            }
+          })
+        });
+      }
+
+      return nutritions;
+    }
+  },
   created () {
     this.getFruits();
   },
@@ -94,9 +140,11 @@ export default {
       let fetchUrl = `/api/fruits?page=1&itemsPerPage=10&isFavourite=1`;
       const res = await axios.get(fetchUrl);
       this.fruits = res.data['hydra:member'];
+      if (res?.data['hydra:totalItems'] > 0) {
+      }
       this.fetching = false;
     },
-  },
+  }
 }
 </script>
 <style scoped>
